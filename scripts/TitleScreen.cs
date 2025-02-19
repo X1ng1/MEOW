@@ -4,10 +4,10 @@ using System;
 public partial class TitleScreen : CanvasLayer
 {
 	// Called when the node enters the scene tree for the first time.
-	
+
 	[Signal]
 	public delegate void StartGameEventHandler();
-	
+
 	public override void _Ready()
 	{
 	}
@@ -23,4 +23,11 @@ public partial class TitleScreen : CanvasLayer
 		EmitSignal(SignalName.StartGame);
 
 	}
+
+	private void OnExitButtonPressed()
+	{
+		GetTree().Quit();
+
+	}
+
 }

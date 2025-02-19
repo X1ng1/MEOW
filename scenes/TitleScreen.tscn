@@ -20,6 +20,7 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 200
 text = "Meow"
+metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Button" parent="."]
 anchors_preset = 8
@@ -35,13 +36,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "Start"
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("shortcut_context")]
+[node name="Background" type="TextureRect" parent="." node_paths=PackedStringArray("shortcut_context")]
 z_index = -10
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 shortcut_context = NodePath("../StartButton")
 texture = ExtResource("2_mv6co")
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -361.0
+offset_right = 90.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "Exit
+"
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]
