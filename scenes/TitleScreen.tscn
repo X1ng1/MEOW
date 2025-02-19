@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://crtj8h0x5foi5"]
+
+[ext_resource type="Script" path="res://scripts/TitleScreen.cs" id="1_u1n3l"]
+[ext_resource type="Texture2D" uid="uid://bj32cnu3y7o6i" path="res://assets/tempTitleScreen.jpg" id="2_mv6co"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_u1n3l")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.27
+anchor_right = 0.501
+anchor_bottom = 0.27
+offset_left = -290.0
+offset_top = -187.6
+offset_right = 293.08
+offset_bottom = 85.4
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 200
+text = "Meow"
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -72.5
+offset_right = 121.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Start"
+
+[node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("shortcut_context")]
+z_index = -10
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+shortcut_context = NodePath("../StartButton")
+texture = ExtResource("2_mv6co")
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
