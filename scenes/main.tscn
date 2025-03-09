@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://vvx57lty1ane"]
 
-[ext_resource type="Script" path="res://scripts/Main.cs" id="1_so4gy"]
-[ext_resource type="PackedScene" uid="uid://crtj8h0x5foi5" path="res://scenes/TitleScreen.tscn" id="2_bc1ll"]
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_3uooe"]
+[ext_resource type="PackedScene" uid="uid://crtj8h0x5foi5" path="res://scenes/Hud.tscn" id="2_ubi0p"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_so4gy")
+script = ExtResource("1_3uooe")
 
-[node name="TitleScreen" parent="." instance=ExtResource("2_bc1ll")]
-
-[connection signal="StartGame" from="TitleScreen" to="." method="StartGame"]
+[node name="HUD" parent="." instance=ExtResource("2_ubi0p")]
