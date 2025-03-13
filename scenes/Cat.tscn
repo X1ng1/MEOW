@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://2y0ldu2wc6ih"]
+
+[ext_resource type="Texture2D" uid="uid://dop61pgm3ny0h" path="res://assets/playerGrey_walk1.png" id="1_2sn51"]
+[ext_resource type="Script" path="res://scripts/Cat.cs" id="1_fr23k"]
+[ext_resource type="Texture2D" uid="uid://caaxid3a3jxu6" path="res://assets/playerGrey_walk2.png" id="2_ugu8x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykglw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2sn51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ugu8x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yob85"]
+size = Vector2(118, 146)
+
+[node name="Cat" type="Node2D"]
+script = ExtResource("1_fr23k")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ykglw")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_yob85")
+
+[node name="MovementTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="MovementTimer" to="." method="OnMovementTimerTimeOut"]

@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://vvx57lty1ane"]
+[gd_scene load_steps=4 format=3 uid="uid://vvx57lty1ane"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_3uooe"]
+[ext_resource type="PackedScene" uid="uid://2y0ldu2wc6ih" path="res://scenes/Cat.tscn" id="2_rcbcl"]
 [ext_resource type="PackedScene" uid="uid://crtj8h0x5foi5" path="res://scenes/Hud.tscn" id="2_ubi0p"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3uooe")
 
+[node name="Cat" parent="." instance=ExtResource("2_rcbcl")]
+position = Vector2(365, 152)
+
 [node name="HUD" parent="." instance=ExtResource("2_ubi0p")]
+layer = -1
+
+[connection signal="PauseGame" from="HUD" to="." method="OnHudPauseGame"]
+[connection signal="StartGame" from="HUD" to="." method="OnHudStartGame"]

@@ -6,6 +6,8 @@ public partial class Hud : CanvasLayer
 
 	[Signal]
 	public delegate void StartGameEventHandler();
+	[Signal]
+	public delegate void PauseGameEventHandler();
 	private PanelContainer titleScreen;
 	private VBoxContainer vBoxContainer;
 	private VBoxContainer buttonContainer;
@@ -31,6 +33,7 @@ public partial class Hud : CanvasLayer
 		else if (Input.IsActionJustPressed("escapeKey") && !titleScreen.Visible)
 		{
 			titleScreen.Show();
+
 		}
 
 	}
@@ -38,6 +41,7 @@ public partial class Hud : CanvasLayer
 	private void OnStartButtonPressed()
 	{
 		GetNode<PanelContainer>("TitleScreen").Hide();
+		GetNode<PanelContainer>("MainScreen").Show();
 		EmitSignal(SignalName.StartGame);
 
 	}
@@ -63,10 +67,13 @@ public partial class Hud : CanvasLayer
 	private void OnBackButtonPressed()
 	{
 		defaultTitleScreen();
+		EmitSignal(SignalName.PauseGame);
 	}
 
 	private void defaultTitleScreen()
 	{
+		GetNode<PanelContainer>("TitleScreen").Show();
+		GetNode<PanelContainer>("MainScreen").Hide();
 		buttonContainer.GetNode<Button>("StartButton").Show();
 		buttonContainer.GetNode<Button>("ExitButton").Show();
 		buttonContainer.GetNode<Button>("CreditButton").Show();
