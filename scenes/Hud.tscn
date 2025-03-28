@@ -81,6 +81,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_pgsir")
 
 [node name="BackButton" type="Button" parent="MainScreen"]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
