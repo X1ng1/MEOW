@@ -7,7 +7,7 @@ public partial class Cat : Node2D
 	[Export] public int Speed { get; set; } = 50; // How fast the cats move
 	[Export] public string CatName { get; set; }
 	[Export] public string CatDescription { get; set; }
-	// private static List<Cat> _allCats = new List<Cat>();
+	private static List<Cat> _allCats = new List<Cat>();
 	private static PackedScene CatScene = (PackedScene)ResourceLoader.Load("res://scenes/Cat.tscn");
 	private Vector2 _direction;
 	private Vector2 _screenSize;
@@ -21,20 +21,18 @@ public partial class Cat : Node2D
 		Cat newCat = CatScene.Instantiate() as Cat;
 		newCat.CatName = name;
 		newCat.CatDescription = description;
-		// _allCats.Add(newCat);
-		// GD.Print("name");
+		_allCats.Add(newCat);
+		GD.Print(name);
 		return newCat;
 	}
-	// public static void HideCats()
-	// {
-	// 	_allCats.ForEach(cat => cat.Visible = false);
-
-	// }
-	// public static void ShowCats()
-	// {
-	// 	_allCats.ForEach(cat => cat.Visible = true);
-
-	// }
+	public static void HideCats()
+	{
+		_allCats.ForEach(cat => cat.Visible = false);
+	}
+	public static void ShowCats()
+	{
+		_allCats.ForEach(cat => cat.Visible = true);
+	}
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -48,7 +46,7 @@ public partial class Cat : Node2D
 		_movementTimer.Timeout += OnMovementTimerTimeOut;
 		_movementTimer.Start();
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		GD.Print(_animatedSprite2D);
+		//GD.Print(_animatedSprite2D);
 		GetNode<Label>("Name").Text = CatName;
 
 
@@ -85,9 +83,9 @@ public partial class Cat : Node2D
 	private void OnMovementTimerTimeOut()
 	{
 		_movementTimer.WaitTime = _random.Next(5, 60);
-		GD.Print(_movementTimer.WaitTime);
+		//GD.Print(_movementTimer.WaitTime);
 		_movementTimer.Start();
-		GD.Print(_movementTimer.TimeLeft);
+		//GD.Print(_movementTimer.TimeLeft);
 
 		if (_random.Next(0, 7) == 0)
 		{

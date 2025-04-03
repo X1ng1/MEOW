@@ -24,6 +24,7 @@ public partial class Main : Node
 
 			// AddChild(catInstance);
 		}
+		Cat.HideCats();
 
 	}
 
@@ -35,9 +36,10 @@ public partial class Main : Node
 
 	private void OnHudStartGame()
 	{
+		Cat.ShowCats();
 	}
 	private void OnHudPauseGame()
 	{
-
+		Cat.HideCats();
 	}
 }
