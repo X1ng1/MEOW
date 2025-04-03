@@ -14,7 +14,7 @@ animations = [{
 "texture": ExtResource("2_ugu8x")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -27,9 +27,27 @@ z_as_relative = false
 script = ExtResource("1_fr23k")
 metadata/_edit_group_ = true
 
+[node name="Name" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 30.0
+offset_right = 22.0
+offset_bottom = 53.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ykglw")
+animation = &"walk"
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(0.5, 0.5)

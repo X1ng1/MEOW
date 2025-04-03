@@ -6,12 +6,10 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3uooe")
+CatsScene = ExtResource("2_rcbcl")
 
 [node name="HUD" parent="." instance=ExtResource("2_ubi0p")]
 layer = -1
-
-[node name="Cat" parent="." instance=ExtResource("2_rcbcl")]
-position = Vector2(385, 336)
 
 [connection signal="PauseGame" from="HUD" to="." method="OnHudPauseGame"]
 [connection signal="StartGame" from="HUD" to="." method="OnHudStartGame"]
