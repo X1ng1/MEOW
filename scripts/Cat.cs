@@ -33,6 +33,27 @@ public partial class Cat : CharacterBody2D
 	{
 		_allCats.ForEach(cat => cat.Visible = true);
 	}
+	public static void setCatSpeed(string catName, int speed)
+	{
+		GD.Print(catName);
+		Cat cat = _allCats.Find(c => c.CatName == catName);
+		if (cat == null)
+		{
+			GD.Print("Cat not found");
+			return;
+		}
+		if (cat != null && speed > 0)
+		{
+			GD.Print("should be moving");
+			cat.Speed = speed;
+			cat._animatedSprite2D.Play();
+		}
+		else
+		{
+			cat.Speed = 0;
+			cat._animatedSprite2D.Stop();
+		}
+	}
 	public override void _Ready()
 	{
 		_direction = RandomDirection(330, 30, 150, 210);
@@ -45,8 +66,6 @@ public partial class Cat : CharacterBody2D
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		//GD.Print(_animatedSprite2D);
 		GetNode<Label>("Name").Text = CatName;
-
-
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -94,13 +113,16 @@ public partial class Cat : CharacterBody2D
 	private void OnClick(Node viewport, InputEvent @event, int shapeIdx)
 	{
 
-		 if (@event is InputEventMouseButton mouseEvent &&
-	  mouseEvent.Pressed &&
-	  mouseEvent.ButtonIndex == MouseButton.Left)
+		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
 		{
-			Popups.CatDataPopup(CatName, CatDescription);
+			GD.Print("Clicked on cat");
+			Vector2I mousePos = (Vector2I)GetViewport().GetMousePosition();
+			Popups.CatDataPopup(CatName, CatDescription, mousePos);
+			Speed = 0;
+			_animatedSprite2D.Stop();
 		}
 	}
+
 
 	private Vector2 RandomDirection(int minAngle1, int maxAngle1, int minAngle2, int maxAngle2)
 	{

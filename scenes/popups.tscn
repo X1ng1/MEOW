@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvwfephl2bv0o"]
+[gd_scene load_steps=3 format=3 uid="uid://bvwfephl2bv0o"]
 
 [ext_resource type="Script" path="res://scripts/Popups.cs" id="1_r0x7l"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5if2i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q707j"]
 bg_color = Color(0.39128, 0.62989, 0.794974, 1)
@@ -40,26 +38,24 @@ text = "cat"
 
 [node name="TransparentMouseCatcher" type="Panel" parent="CanvasLayer2"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_5if2i")
 
 [node name="CatDataPopup" type="PopupPanel" parent="CanvasLayer2"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 position = Vector2i(796, 327)
-size = Vector2i(328, 425)
+size = Vector2i(228, 373)
 always_on_top = true
 
 [node name="Panel" type="PanelContainer" parent="CanvasLayer2/CatDataPopup"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 324.0
-offset_bottom = 421.0
+offset_right = 224.0
+offset_bottom = 369.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_q707j")
@@ -98,9 +94,10 @@ text = "Description:
 
 [node name="CatDescription" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 autowrap_mode = 3
 
 [connection signal="gui_input" from="CanvasLayer2/TransparentMouseCatcher" to="." method="OnMouseCatcherClick"]
+[connection signal="popup_hide" from="CanvasLayer2/CatDataPopup" to="." method="CatDataPopupClosed"]

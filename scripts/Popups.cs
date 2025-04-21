@@ -16,30 +16,20 @@ public partial class Popups : Control
 		catPopup = GetNode<PopupPanel>("%CatInfoPopup");
 		catDataPopup = GetNode<PopupPanel>("%CatDataPopup");
 		mouseCatcher = GetNode<Panel>("%TransparentMouseCatcher");
+		mouseCatcher.Hide();
 		catNameLabel = GetNode<Label>("%CatName");
 		catDescriptionLabel = GetNode<Label>("%CatDescription");
 
 	}
-	public static void CatInfoPopup()
-	{
-		catPopup.Popup();
-		GD.Print("Cat Info Popup");
 
-	}
 
-	public static void HideCatInfoPopup()
+	public static void CatDataPopup(string name, string description, Vector2I mousePos)
 	{
-		catPopup.Hide();
-		GD.Print("Cat Hide");
-	}
-
-	public static void CatDataPopup(string name, string description)
-	{
+		Rect2I rect = new Rect2I(mousePos, Vector2I.Zero);
 		catNameLabel.Text = name;
 		catDescriptionLabel.Text = description;
-		mouseCatcher.Visible = true;
-		catDataPopup.Popup();
-		GD.Print("Cat Data Popup");
+		// mouseCatcher.Visible = true;
+		catDataPopup.Popup(rect);
 
 	}
 
@@ -49,20 +39,21 @@ public partial class Popups : Control
 		GD.Print("Cat Hide");
 	}
 
+	public static void CatDataPopupClosed()
+	{
+		GD.Print("Popup closed");
+		Cat.setCatSpeed(catNameLabel.Text, 50);
+	}
+
 	private void OnMouseCatcherClick(InputEvent e)
 	{
-		if (e is InputEventMouseButton mouseButtonEvent && mouseButtonEvent.IsPressed())
+		GD.Print("Mouse Catcher movement");
+		if (e is InputEventMouseButton mouseButtonEvent && mouseButtonEvent.IsPressed() && mouseButtonEvent.ButtonIndex == MouseButton.Left)
 		{
-			HideCatInfoPopup();
-			HideCatDataPopup();
 			GD.Print("Mouse Clicked");
-			mouseCatcher.Visible = false;
-		}
-		else if (e is InputEventMouseMotion)
-		{
-			HideCatInfoPopup();
 			HideCatDataPopup();
-			GD.Print("Mouse Moved");
+			mouseCatcher.Visible = false;
+			Cat.setCatSpeed(catNameLabel.Text, 50);
 		}
 	}
 }
