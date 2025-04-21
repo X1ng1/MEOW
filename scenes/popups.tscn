@@ -73,13 +73,13 @@ layout_mode = 2
 [node name="HName" type="HBoxContainer" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
 layout_mode = 2
 
-[node name="CatName" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
-unique_name_in_owner = true
+[node name="Name" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
 layout_mode = 2
 text = "Name:
 "
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+[node name="CatName" type="LineEdit" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "
@@ -101,4 +101,4 @@ autowrap_mode = 3
 
 [connection signal="gui_input" from="CanvasLayer2/TransparentMouseCatcher" to="." method="OnMouseCatcherClick"]
 [connection signal="popup_hide" from="CanvasLayer2/CatDataPopup" to="." method="CatDataPopupClosed"]
-[connection signal="text_submitted" from="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName/LineEdit" to="." method="CatNameChange"]
+[connection signal="text_submitted" from="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName/CatName" to="." method="CatNameChange"]

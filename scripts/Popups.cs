@@ -8,7 +8,7 @@ public partial class Popups : Control
 	private static PopupPanel catDataPopup;
 	private static Panel mouseCatcher;
 
-	private static Label catNameLabel;
+	private static LineEdit catName;
 	private static Label catDescriptionLabel;
 
 	private static int catID;
@@ -19,7 +19,7 @@ public partial class Popups : Control
 		catDataPopup = GetNode<PopupPanel>("%CatDataPopup");
 		mouseCatcher = GetNode<Panel>("%TransparentMouseCatcher");
 		mouseCatcher.Hide();
-		catNameLabel = GetNode<Label>("%CatName");
+		catName = GetNode<LineEdit>("%CatName");
 		catDescriptionLabel = GetNode<Label>("%CatDescription");
 
 	}
@@ -28,7 +28,7 @@ public partial class Popups : Control
 	public static void CatDataPopup(string name, string description, Vector2I mousePos, int catId)
 	{
 		Rect2I rect = new Rect2I(mousePos, Vector2I.Zero);
-		catNameLabel.Text = name;
+		catName.Text = name;
 		catDescriptionLabel.Text = description;
 		// mouseCatcher.Visible = true;
 		catDataPopup.Popup(rect);
@@ -45,12 +45,12 @@ public partial class Popups : Control
 	public static void CatDataPopupClosed()
 	{
 		GD.Print("Popup closed");
-		Cat.setCatSpeed(catNameLabel.Text, 50, catID);
+		Cat.setCatSpeed(catName.Text, 50, catID);
 	}
 
 	private void CatNameChange(string name)
 	{
-		catNameLabel.Text = name;
+		catName.Text = name;
 		Cat.setCatName(name, catID);
 		
 	}
@@ -63,7 +63,7 @@ public partial class Popups : Control
 	// 		GD.Print("Mouse Clicked");
 	// 		HideCatDataPopup();
 	// 		mouseCatcher.Visible = false;
-	// 		Cat.setCatSpeed(catNameLabel.Text, 50);
+	// 		Cat.setCatSpeed(catName.Text, 50);
 	// 	}
 	// }
 }
