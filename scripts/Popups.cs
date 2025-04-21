@@ -33,7 +33,7 @@ public partial class Popups : Control
 		GD.Print("Cat Hide");
 	}
 
-	public static void CatDataPopup(String name, String description)
+	public static void CatDataPopup(string name, string description)
 	{
 		catNameLabel.Text = name;
 		catDescriptionLabel.Text = description;

@@ -98,7 +98,7 @@ public partial class Cat : CharacterBody2D
 	  mouseEvent.Pressed &&
 	  mouseEvent.ButtonIndex == MouseButton.Left)
 		{
-			GD.Print("Cat clicked!");
+			Popups.CatDataPopup(CatName, CatDescription);
 		}
 	}
 
