@@ -101,3 +101,4 @@ autowrap_mode = 3
 
 [connection signal="gui_input" from="CanvasLayer2/TransparentMouseCatcher" to="." method="OnMouseCatcherClick"]
 [connection signal="popup_hide" from="CanvasLayer2/CatDataPopup" to="." method="CatDataPopupClosed"]
+[connection signal="text_submitted" from="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName/LineEdit" to="." method="CatNameChange"]

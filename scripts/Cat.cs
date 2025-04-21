@@ -33,10 +33,10 @@ public partial class Cat : CharacterBody2D
 	{
 		_allCats.ForEach(cat => cat.Visible = true);
 	}
-	public static void setCatSpeed(string catName, int speed)
+	public static void setCatSpeed(string catName, int speed, int catID)
 	{
 		GD.Print(catName);
-		Cat cat = _allCats.Find(c => c.CatName == catName);
+		Cat cat = _allCats[catID];
 		if (cat == null)
 		{
 			GD.Print("Cat not found");
@@ -53,6 +53,17 @@ public partial class Cat : CharacterBody2D
 			cat.Speed = 0;
 			cat._animatedSprite2D.Stop();
 		}
+	}
+	public static void setCatName(string catName, int catID)
+	{
+		Cat cat = _allCats[catID];
+		if (cat == null)
+		{
+			GD.Print("Cat not found");
+			return;
+		}
+		cat.CatName = catName;
+		cat.GetNode<Label>("Name").Text = catName;
 	}
 	public override void _Ready()
 	{
@@ -117,7 +128,7 @@ public partial class Cat : CharacterBody2D
 		{
 			GD.Print("Clicked on cat");
 			Vector2I mousePos = (Vector2I)GetViewport().GetMousePosition();
-			Popups.CatDataPopup(CatName, CatDescription, mousePos);
+			Popups.CatDataPopup(CatName, CatDescription, mousePos, _allCats.IndexOf(this));
 			Speed = 0;
 			_animatedSprite2D.Stop();
 		}
