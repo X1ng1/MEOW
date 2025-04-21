@@ -1,18 +1,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-
-public partial class Cat : Node2D
+public partial class Cat : CharacterBody2D
 {
 	[Export] public int Speed { get; set; } = 50; // How fast the cats move
+
 	[Export] public string CatName { get; set; }
 	[Export] public string CatDescription { get; set; }
+
 	private static List<Cat> _allCats = new List<Cat>();
 	private static PackedScene CatScene = (PackedScene)ResourceLoader.Load("res://scenes/Cat.tscn");
+	private Random _random = new Random();
 	private Vector2 _direction;
 	private Vector2 _screenSize;
-
-	private Random _random = new Random();
 	private Timer _movementTimer;
 	private AnimatedSprite2D _animatedSprite2D;
 
@@ -33,9 +33,6 @@ public partial class Cat : Node2D
 	{
 		_allCats.ForEach(cat => cat.Visible = true);
 	}
-
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_direction = RandomDirection(330, 30, 150, 210);
@@ -52,14 +49,9 @@ public partial class Cat : Node2D
 
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		CharacterMovement(delta);
-	}
 
-	private void CharacterMovement(double delta)
-	{
 		if (Speed > 0)
 		{
 			_animatedSprite2D.Play("walk");
@@ -69,6 +61,7 @@ public partial class Cat : Node2D
 			_animatedSprite2D.Stop();
 		}
 		Position += _direction * Speed * (float)delta;
+
 		if (Position.X < 0 || Position.X > _screenSize.X)
 		{
 			_direction.X = -_direction.X;
@@ -78,8 +71,8 @@ public partial class Cat : Node2D
 			_direction.Y = -_direction.Y;
 		}
 		_animatedSprite2D.FlipH = _direction.X < 0;
-	}
 
+	}
 	private void OnMovementTimerTimeOut()
 	{
 		_movementTimer.WaitTime = _random.Next(5, 60);
@@ -95,6 +88,17 @@ public partial class Cat : Node2D
 		{
 			Speed = 50;
 			_direction = RandomDirection(330, 30, 150, 210);
+		}
+	}
+
+	private void OnClick(Node viewport, InputEvent @event, int shapeIdx)
+	{
+
+		 if (@event is InputEventMouseButton mouseEvent &&
+	  mouseEvent.Pressed &&
+	  mouseEvent.ButtonIndex == MouseButton.Left)
+		{
+			GD.Print("Cat clicked!");
 		}
 	}
 

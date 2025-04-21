@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvwfephl2bv0o"]
+
+[ext_resource type="Script" path="res://scripts/Popups.cs" id="1_r0x7l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5if2i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q707j"]
+bg_color = Color(0.39128, 0.62989, 0.794974, 1)
+
+[node name="Popups" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r0x7l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CatInfoPopup" type="PopupPanel" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2i(715, 305)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CatInfoPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="Label2" type="Label" parent="CanvasLayer/CatInfoPopup/VBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="Label" type="Label" parent="CanvasLayer/CatInfoPopup/VBoxContainer"]
+layout_mode = 2
+text = "cat"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="TransparentMouseCatcher" type="Panel" parent="CanvasLayer2"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5if2i")
+
+[node name="CatDataPopup" type="PopupPanel" parent="CanvasLayer2"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+position = Vector2i(796, 327)
+size = Vector2i(328, 425)
+always_on_top = true
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer2/CatDataPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 324.0
+offset_bottom = 421.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_q707j")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/CatDataPopup/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VAll" type="VBoxContainer" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HName" type="HBoxContainer" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+layout_mode = 2
+
+[node name="CatName" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Name:
+"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "
+Cat Name"
+placeholder_text = "Cat Name"
+caret_blink = true
+
+[node name="Description" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+layout_mode = 2
+text = "Description:
+"
+
+[node name="CatDescription" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 3
+
+[connection signal="gui_input" from="CanvasLayer2/TransparentMouseCatcher" to="." method="OnMouseCatcherClick"]
