@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://2y0ldu2wc6ih"]
+
+[ext_resource type="Texture2D" uid="uid://dop61pgm3ny0h" path="res://assets/playerGrey_walk1.png" id="1_2sn51"]
+[ext_resource type="Script" path="res://scripts/Cat.cs" id="1_fr23k"]
+[ext_resource type="Texture2D" uid="uid://caaxid3a3jxu6" path="res://assets/playerGrey_walk2.png" id="2_ugu8x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykglw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2sn51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ugu8x")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yob85"]
+size = Vector2(118, 146)
+
+[node name="Cat" type="CharacterBody2D"]
+z_index = 100
+z_as_relative = false
+input_pickable = true
+script = ExtResource("1_fr23k")
+
+[node name="Name" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 30.0
+offset_right = 22.0
+offset_bottom = 53.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ykglw")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_yob85")
+
+[connection signal="input_event" from="." to="." method="OnClick"]
