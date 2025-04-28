@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0pc3ru2qhy8v"]
+
+[ext_resource type="Script" path="res://scripts/Fish.cs" id="1_os5ny"]
+[ext_resource type="Texture2D" uid="uid://cpgnc8axqgcye" path="res://assets/fish.png" id="2_butgf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg7dk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_butgf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb8kb"]
+radius = 82.0
+height = 216.0
+
+[node name="Fish" type="RigidBody2D"]
+collision_mask = 0
+script = ExtResource("1_os5ny")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(101, 103)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_bg7dk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(94, 102)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_qb8kb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(94, 102)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvwfephl2bv0o"]
+[gd_scene load_steps=3 format=3 uid="uid://bhcy7pt86hyna"]
 
 [ext_resource type="Script" path="res://scripts/Popups.cs" id="1_r0x7l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q707j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij00k"]
 bg_color = Color(0.39128, 0.62989, 0.794974, 1)
 
-[node name="Popups" type="Control"]
+[node name="popups" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,69 +16,41 @@ script = ExtResource("1_r0x7l")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CatInfoPopup" type="PopupPanel" parent="CanvasLayer"]
-unique_name_in_owner = true
-position = Vector2i(715, 305)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CatInfoPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
-
-[node name="Label2" type="Label" parent="CanvasLayer/CatInfoPopup/VBoxContainer"]
-layout_mode = 2
-text = "Name"
-
-[node name="Label" type="Label" parent="CanvasLayer/CatInfoPopup/VBoxContainer"]
-layout_mode = 2
-text = "cat"
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="TransparentMouseCatcher" type="Panel" parent="CanvasLayer2"]
-unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CatDataPopup" type="PopupPanel" parent="CanvasLayer2"]
+[node name="CatDataPopup" type="PopupPanel" parent="CanvasLayer"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 position = Vector2i(796, 327)
 size = Vector2i(228, 373)
 always_on_top = true
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer2/CatDataPopup"]
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/CatDataPopup"]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 224.0
 offset_bottom = 369.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_q707j")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ij00k")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2/CatDataPopup/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CatDataPopup/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VAll" type="VBoxContainer" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer"]
+[node name="VAll" type="VBoxContainer" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="HName" type="HBoxContainer" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+[node name="HName" type="HBoxContainer" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+[node name="Name" type="Label" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll/HName"]
 layout_mode = 2
 text = "Name:
 "
 
-[node name="CatName" type="LineEdit" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName"]
+[node name="CatName" type="LineEdit" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll/HName"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -87,18 +59,14 @@ Cat Name"
 placeholder_text = "Cat Name"
 caret_blink = true
 
-[node name="Description" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+[node name="Description" type="Label" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll"]
 layout_mode = 2
 text = "Description:
 "
 
-[node name="CatDescription" type="Label" parent="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll"]
+[node name="CatDescription" type="Label" parent="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 autowrap_mode = 3
-
-[connection signal="gui_input" from="CanvasLayer2/TransparentMouseCatcher" to="." method="OnMouseCatcherClick"]
-[connection signal="popup_hide" from="CanvasLayer2/CatDataPopup" to="." method="CatDataPopupClosed"]
-[connection signal="text_submitted" from="CanvasLayer2/CatDataPopup/Panel/MarginContainer/VAll/HName/CatName" to="." method="CatNameChange"]

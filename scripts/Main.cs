@@ -5,12 +5,13 @@ public partial class Main : Node
 {
 	[Export]
     private PackedScene CatsScene { get; set; }
+	public PackedScene FishScene { get; set; }
 	private TextureRect background;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		background = GetNode<TextureRect>("Background");
-		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.jpg");
+		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.png");
 		Hud.defaultTitleScreen();
 		for (int i = 0; i < 10; i++)
 		{
@@ -37,6 +38,6 @@ public partial class Main : Node
 	private void OnHudPauseGame()
 	{
 		Cat.HideCats();
-		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.jpg");
+		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.png");
 	}
 }

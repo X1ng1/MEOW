@@ -2,11 +2,10 @@ using Godot;
 using System;
 using System.Net;
 
-public partial class Popups : Control
+public partial class Popups : Node
 {
-	private static PopupPanel catPopup;
 	private static PopupPanel catDataPopup;
-	private static Panel mouseCatcher;
+
 
 	private static LineEdit catName;
 	private static Label catDescriptionLabel;
@@ -15,15 +14,11 @@ public partial class Popups : Control
 
 	public override void _Ready()
 	{
-		catPopup = GetNode<PopupPanel>("%CatInfoPopup");
 		catDataPopup = GetNode<PopupPanel>("%CatDataPopup");
-		mouseCatcher = GetNode<Panel>("%TransparentMouseCatcher");
-		mouseCatcher.Hide();
 		catName = GetNode<LineEdit>("%CatName");
 		catDescriptionLabel = GetNode<Label>("%CatDescription");
 
 	}
-
 
 	public static void CatDataPopup(string name, string description, Vector2I mousePos, int catId)
 	{

@@ -84,7 +84,7 @@ public partial class Cat : CharacterBody2D
 
 		if (Speed > 0)
 		{
-			_animatedSprite2D.Play("walk");
+			_animatedSprite2D.Play("cat");
 		}
 		else
 		{
@@ -110,7 +110,7 @@ public partial class Cat : CharacterBody2D
 		_movementTimer.Start();
 		//GD.Print(_movementTimer.TimeLeft);
 
-		if (_random.Next(0, 7) == 0)
+		if (_random.Next(0, 9) == 0)
 		{
 			Speed = 0;
 		}
