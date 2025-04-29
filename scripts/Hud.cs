@@ -9,29 +9,29 @@ public partial class Hud : CanvasLayer
 	public delegate void StartGameEventHandler();
 	[Signal]
 	public delegate void PauseGameEventHandler();
-	private static Control control;
-	private static Button backButton;
-	private static VBoxContainer mainMenu;
+	private static Control _control;
+	private static Button _backButton;
+	private static VBoxContainer _mainMenu;
 	public override void _Ready()
 	{
-		control = GetNode<Control>("Control");
-		mainMenu = control.GetNode<VBoxContainer>("MainMenu");
-		backButton = control.GetNode<Button>("BackButton");
+		_control = GetNode<Control>("Control");
+		_mainMenu = _control.GetNode<VBoxContainer>("MainMenu");
+		_backButton = _control.GetNode<Button>("BackButton");
 		defaultTitleScreen();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("escapeKey") && !control.GetNode<Label>("Credits").Visible && mainMenu.Visible)
+		if (Input.IsActionJustPressed("escapeKey") && !_control.GetNode<Label>("Credits").Visible && _mainMenu.Visible)
 		{
 			GetTree().Quit();
 		}
-		else if (Input.IsActionJustPressed("escapeKey") && control.GetNode<Label>("Credits").Visible)
+		else if (Input.IsActionJustPressed("escapeKey") && _control.GetNode<Label>("Credits").Visible)
 		{
 			defaultTitleScreen();
 		}
-		else if (Input.IsActionJustPressed("escapeKey") && !mainMenu.Visible)
+		else if (Input.IsActionJustPressed("escapeKey") && !_mainMenu.Visible)
 		{
 			defaultTitleScreen();
 			EmitSignal(SignalName.PauseGame);
@@ -42,7 +42,7 @@ public partial class Hud : CanvasLayer
 
 	private void OnStartButtonPressed()
 	{
-		backButton.Show();
+		_backButton.Show();
 		EmitSignal(SignalName.StartGame);
 		GD.Print("Start Game");
 
@@ -55,13 +55,13 @@ public partial class Hud : CanvasLayer
 	}
 	private void OnCreditButtonPressed()
 	{
-		mainMenu.Hide();
+		_mainMenu.Hide();
 		// buttonContainer.GetNode<Button>("StartButton").Hide();
 		// buttonContainer.GetNode<Button>("ExitButton").Hide();
 		// buttonContainer.GetNode<Button>("CreditButton").Hide();
 		// mainMenu.GetNode<Label>("Title").Hide();
-		backButton.Show();
-		control.GetNode<Label>("Credits").Show();
+		_backButton.Show();
+		_control.GetNode<Label>("Credits").Show();
 
 
 
@@ -78,17 +78,17 @@ public partial class Hud : CanvasLayer
 		// buttonContainer.GetNode<Button>("StartButton").Show();
 		// buttonContainer.GetNode<Button>("ExitButton").Show();
 		// buttonContainer.GetNode<Button>("CreditButton").Show();
-		backButton.Hide();
+		_backButton.Hide();
 		// mainMenu.GetNode<Label>("Title").Show();
 		// control.GetNode<Label>("Credits").Hide();
-		mainMenu.Show();
-		control.GetNode<Label>("Credits").Hide();
+		_mainMenu.Show();
+		_control.GetNode<Label>("Credits").Hide();
 
 	}
 	public static void HideMainMenu()
 	{
-		mainMenu.Hide();
-		control.GetNode<Label>("Credits").Hide();
+		_mainMenu.Hide();
+		_control.GetNode<Label>("Credits").Hide();
 
 	}
 

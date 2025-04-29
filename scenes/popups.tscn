@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij00k"]
 bg_color = Color(0.39128, 0.62989, 0.794974, 1)
 
-[node name="popups" type="Control"]
+[node name="Popups" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,3 +70,6 @@ custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 autowrap_mode = 3
+
+[connection signal="popup_hide" from="CanvasLayer/CatDataPopup" to="." method="CatDataPopupClosed"]
+[connection signal="text_submitted" from="CanvasLayer/CatDataPopup/Panel/MarginContainer/VAll/HName/CatName" to="." method="CatNameChange"]
