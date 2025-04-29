@@ -1,33 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://2y0ldu2wc6ih"]
+[gd_scene load_steps=6 format=3 uid="uid://2y0ldu2wc6ih"]
 
-[ext_resource type="Texture2D" uid="uid://dop61pgm3ny0h" path="res://assets/playerGrey_walk1.png" id="1_2sn51"]
 [ext_resource type="Script" path="res://scripts/Cat.cs" id="1_fr23k"]
-[ext_resource type="Texture2D" uid="uid://j27sfp4s8oqi" path="res://assets/cat1.png" id="2_2ahia"]
-[ext_resource type="Texture2D" uid="uid://caaxid3a3jxu6" path="res://assets/playerGrey_walk2.png" id="2_ugu8x"]
-[ext_resource type="Texture2D" uid="uid://o0plg8ayndk6" path="res://assets/cat2.png" id="3_pmu5g"]
+[ext_resource type="Texture2D" uid="uid://j27sfp4s8oqi" path="res://assets/pictures/cat1.png" id="2_2x13e"]
+[ext_resource type="Texture2D" uid="uid://o0plg8ayndk6" path="res://assets/pictures/cat2.png" id="3_030if"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ykglw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5gwb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2ahia")
+"texture": ExtResource("2_2x13e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_pmu5g")
+"texture": ExtResource("3_030if")
 }],
 "loop": true,
 "name": &"cat",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_2sn51")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_ugu8x")
-}],
-"loop": true,
-"name": &"walk",
 "speed": 5.0
 }]
 
@@ -59,10 +46,8 @@ vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_ykglw")
+sprite_frames = SubResource("SpriteFrames_l5gwb")
 animation = &"cat"
-frame = 1
-frame_progress = 0.617744
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1.5)

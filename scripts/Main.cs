@@ -11,7 +11,7 @@ public partial class Main : Node
 	public override void _Ready()
 	{
 		background = GetNode<TextureRect>("Background");
-		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.png");
+		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/pictures/tempTitleScreen.png");
 		Hud.defaultTitleScreen();
 		for (int i = 0; i < 10; i++)
 		{
@@ -33,11 +33,11 @@ public partial class Main : Node
 	{
 		Hud.HideMainMenu();
 		Cat.ShowCats();
-		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/Home.jpg");
+		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/pictures/Home.jpg");
 	}
 	private void OnHudPauseGame()
 	{
 		Cat.HideCats();
-		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/tempTitleScreen.png");
+		background.Texture = ResourceLoader.Load<Texture2D>("res://assets/pictures/tempTitleScreen.png");
 	}
 }

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/FallingFish.cs" id="1_i3od5"]
 [ext_resource type="PackedScene" uid="uid://dhnum3nrcji27" path="res://scenes/Fish.tscn" id="2_rqcfq"]
-[ext_resource type="Texture2D" uid="uid://b0lqcv650c8pc" path="res://assets/bowlcatbot.png" id="3_0lvjl"]
-[ext_resource type="Texture2D" uid="uid://cpgkhos0pvski" path="res://assets/bowlcattop.png" id="4_4r3i8"]
+[ext_resource type="Texture2D" uid="uid://b0lqcv650c8pc" path="res://assets/pictures/bowlcatbot.png" id="3_e0k03"]
+[ext_resource type="Texture2D" uid="uid://cpgkhos0pvski" path="res://assets/pictures/bowlcattop.png" id="4_slav1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrh0n"]
 bg_color = Color(0.483656, 0.448902, 0.734586, 1)
@@ -20,11 +20,11 @@ shadow_size = 10
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2bid"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tagxb"]
-size = Vector2(168, 88)
+size = Vector2(177, 63)
 
-[sub_resource type="Curve2D" id="Curve2D_camks"]
+[sub_resource type="Curve2D" id="Curve2D_wvb2d"]
 _data = {
-"points": PackedVector2Array(3.47878, 0, -3.47878, 0, 49.6439, 16.1746, 0, 0, 0, 0, 1224.55, 24.2619)
+"points": PackedVector2Array(0, 0, 0, 0, 52, -56, 0, 0, 0, 0, 780, -56)
 }
 point_count = 2
 
@@ -34,23 +34,25 @@ size = Vector2(1248, 42)
 [node name="FallingFish" type="Node"]
 script = ExtResource("1_i3od5")
 FishScene = ExtResource("2_rqcfq")
-CatSpeed = 500
 
 [node name="Panel" type="Panel" parent="."]
-anchors_preset = -1
-anchor_left = 0.187
-anchor_top = 0.111
-anchor_right = 0.817
-anchor_bottom = 0.889
-offset_left = -15.04
-offset_top = -15.88
-offset_right = 7.35986
-offset_bottom = 3.87994
+custom_minimum_size = Vector2(860, 900)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -430.0
+offset_right = 430.0
+offset_bottom = 430.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_hrh0n")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
+[node name="GameContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,41 +64,41 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GamePanel" type="Panel" parent="Panel/MarginContainer2"]
+[node name="GamePanel" type="Panel" parent="Panel/GameContainer"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t2bid")
 
-[node name="CatBowl" type="Area2D" parent="Panel/MarginContainer2/GamePanel"]
+[node name="CatBowl" type="Area2D" parent="Panel/GameContainer/GamePanel"]
 unique_name_in_owner = true
-position = Vector2(606, 767)
+position = Vector2(420, 808)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel/MarginContainer2/GamePanel/CatBowl"]
-texture = ExtResource("3_0lvjl")
+[node name="Sprite2D" type="Sprite2D" parent="Panel/GameContainer/GamePanel/CatBowl"]
+texture = ExtResource("3_e0k03")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Panel/MarginContainer2/GamePanel/CatBowl"]
+[node name="Sprite2D2" type="Sprite2D" parent="Panel/GameContainer/GamePanel/CatBowl"]
 z_index = 2
-texture = ExtResource("4_4r3i8")
+texture = ExtResource("4_slav1")
 
-[node name="CatCollision" type="CollisionShape2D" parent="Panel/MarginContainer2/GamePanel/CatBowl"]
-position = Vector2(-4, 28)
+[node name="CatCollision" type="CollisionShape2D" parent="Panel/GameContainer/GamePanel/CatBowl"]
+position = Vector2(-1.5, 40.5)
 shape = SubResource("RectangleShape2D_tagxb")
 
-[node name="Marker2D" type="Marker2D" parent="Panel/MarginContainer2/GamePanel"]
-position = Vector2(606, 767)
-
-[node name="FishFallingPath" type="Path2D" parent="Panel/MarginContainer2/GamePanel"]
+[node name="CatStartPosition" type="Marker2D" parent="Panel/GameContainer/GamePanel"]
 unique_name_in_owner = true
-scale = Vector2(0.966887, 0.989205)
-curve = SubResource("Curve2D_camks")
+position = Vector2(420, 808)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Panel/MarginContainer2/GamePanel/FishFallingPath"]
-position = Vector2(49.6439, 16.1746)
-rotation = 3.14159
+[node name="FishFallingPath" type="Path2D" parent="Panel/GameContainer/GamePanel"]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_wvb2d")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Panel/GameContainer/GamePanel/FishFallingPath"]
+position = Vector2(52, -56)
+scale = Vector2(1, 1)
+
+[node name="StatsContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -109,33 +111,25 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="Panel/StatsContainer"]
+unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Score:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "0"
+text = "Scorce: 0"
 
 [node name="FishTimer" type="Timer" parent="."]
-wait_time = 0.009
+wait_time = 0.001
 autostart = true
 
 [node name="FishExitArea" type="Area2D" parent="."]
-position = Vector2(344, 984)
+position = Vector2(343, 1012)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FishExitArea"]
 position = Vector2(616, -11)
 shape = SubResource("RectangleShape2D_mmdxp")
 
+[connection signal="body_entered" from="Panel/GameContainer/GamePanel/CatBowl" to="." method="CaughtFishZone"]
 [connection signal="timeout" from="FishTimer" to="." method="OnFishTimerTimeout"]
 [connection signal="body_entered" from="FishExitArea" to="." method="FishEnteredExitZone"]

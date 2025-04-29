@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://2y0ldu2wc6ih" path="res://scenes/Cat.tscn" id="2_rcbcl"]
 [ext_resource type="PackedScene" uid="uid://crtj8h0x5foi5" path="res://scenes/Hud.tscn" id="2_ubi0p"]
 [ext_resource type="Theme" uid="uid://bc4rkahfagtsm" path="res://assets/themes/buttons.tres" id="3_up6on"]
-[ext_resource type="Texture2D" uid="uid://bpdf0prm70u1i" path="res://assets/Home.jpg" id="4_cjghi"]
+[ext_resource type="Texture2D" uid="uid://bpdf0prm70u1i" path="res://assets/pictures/Home.jpg" id="4_fmevu"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3uooe")
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_up6on")
-texture = ExtResource("4_cjghi")
+texture = ExtResource("4_fmevu")
 
 [node name="Hud" parent="." instance=ExtResource("2_ubi0p")]
 

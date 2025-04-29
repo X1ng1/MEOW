@@ -8,7 +8,7 @@ public partial class FallingFish : Node
 	[Export]
 	public PackedScene FishScene { get; set; }
 	[Export]
-	public int CatSpeed { get; set; } = 400;
+	public int CatSpeed { get; set; } = 1000;
 	[Export]
 	public int CatAcceleration { get; set; } = 400;
 	[Export]
@@ -17,6 +17,8 @@ public partial class FallingFish : Node
 	private Vector2 _gamePanelSize;
 	private Vector2 _gamePanelPosition;
 	private Panel _gamePanel;
+	private Vector2 _startPosition;
+	private int _score = 0;
 
 
 	// private Vector2 _velocity = Vector2.Zero;
@@ -25,7 +27,7 @@ public partial class FallingFish : Node
 		Panel panel = GetNode<Panel>("Panel");
 		_gamePanel = GetNode<Panel>("%GamePanel");
 		_catBowl = GetNode<Area2D>("%CatBowl");
-
+		_startPosition = GetNode<Marker2D>("%CatStartPosition").Position;
 		Callable.From(() => // This will be called after the scene tree is ready and the nodes are initialized
 	   {
 		   _gamePanelSize = _gamePanel.Size;
@@ -47,10 +49,9 @@ public partial class FallingFish : Node
 		{
 			inputVelocity.X -= 1;
 		}
-		if (inputVelocity.Length() > 0)
-		{
-			inputVelocity = inputVelocity.Normalized() * CatSpeed;
-		}
+		
+		inputVelocity = inputVelocity.Normalized() * CatSpeed;
+		
 
 		// if (velocity != Vector2.Zero)
 		// {
@@ -79,7 +80,6 @@ public partial class FallingFish : Node
 
 	}
 
-
 	private void OnFishTimerTimeout()
 	{
 		// Create a new instance of the fish scene.
@@ -90,19 +90,12 @@ public partial class FallingFish : Node
 		var fishSpawnLocation = GetNode<PathFollow2D>("%FishFallingPath/PathFollow2D");
 		fishSpawnLocation.ProgressRatio = GD.Randf();
 
-		// Set the fish's direction perpendicular to the path direction.
-		float direction = fishSpawnLocation.Rotation + Mathf.Pi / 2;
-
 		// Set the fish's position to a random location.
 		fish.Position = fishSpawnLocation.Position;
 
-		// Add some randomness to the direction.
-		// direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
-		// fish.Rotation = direction;
-
 		// Choose the velocity.
-		var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
-		fish.LinearVelocity = velocity.Rotated(direction);
+		var velocity = new Vector2(0, (float)GD.RandRange(150.0, 250.0));
+		fish.LinearVelocity = velocity;
 
 		// Spawn the fish by adding it to the Main scene.
 		_gamePanel.AddChild(fish);
@@ -120,10 +113,31 @@ public partial class FallingFish : Node
 			GD.Print("Not a fish");
 		}
 	}
-	public void OnStartButtonPressed()
+	private void CaughtFishZone(Node body)
+	{
+		if (body is Fish fish)
+		{
+			// Remove the fish from the scene.
+			fish.QueueFree();
+			updateScore(_score += 10);
+		}
+		else
+		{
+			GD.Print("Not a fish");
+		}
+	}
+	public void updateScore(int score)
+	{
+		// Update the score label.
+		Label scoreLabel = GetNode<Label>("%ScoreLabel");
+		scoreLabel.Text = "Score: " + score;
+	}
+	public void StartGame()
 	{
 		// Start the fish timer.
+		_catBowl.Position = _startPosition;
 		GetNode<Timer>("%FishTimer").Start();
+		_score = 0; // Reset the score label.
 
 	}
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhnum3nrcji27"]
 
 [ext_resource type="Script" path="res://scripts/Fish.cs" id="1_os5ny"]
-[ext_resource type="Texture2D" uid="uid://cpgnc8axqgcye" path="res://assets/fish.png" id="2_butgf"]
+[ext_resource type="Texture2D" uid="uid://cpgnc8axqgcye" path="res://assets/pictures/fish.png" id="2_n6akt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb8kb"]
 radius = 82.0
@@ -15,7 +15,7 @@ script = ExtResource("1_os5ny")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(11, 10)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_butgf")
+texture = ExtResource("2_n6akt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 8)
